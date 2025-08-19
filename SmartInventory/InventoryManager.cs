@@ -32,7 +32,9 @@ namespace SmartInventory
         {
             if (products.Count == 0)
             {
+                Console.WriteLine("***************");
                 Console.WriteLine("No products.");
+                Console.WriteLine("***************");
                 return;
             }
             foreach (var p in products)
@@ -54,7 +56,7 @@ namespace SmartInventory
         }
 
         // Expose product list for monitor
-        public List<Product> GetProducts() => products;
+        public List<Product> GetProducts() => new List<Product>(products);
 
         // Add this method to your InventoryManager class
         public void RaiseLowStockAlert(Product product)

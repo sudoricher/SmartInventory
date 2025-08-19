@@ -26,7 +26,7 @@ namespace SmartInventory
                     foreach (var p in inv.GetProducts())
                     {
                         if (p.IsLowStock())
-                            OnLowStockAlert(p);
+                            inv.RaiseLowStockAlert(p);
                     }
                     Thread.Sleep(10000); // check every 10s
                 }

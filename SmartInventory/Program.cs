@@ -30,12 +30,16 @@ namespace SmartInventory
 
                 if (security.Authenticate(user, pass))
                 {
+                    Console.WriteLine("=========================");
                     Console.WriteLine($"Welcome {user} ({security.CurrentUserRole})");
+                    Console.WriteLine("=========================");
                     loggedIn = true;
                 }
                 else
                 {
+                    Console.WriteLine("*************************");
                     Console.WriteLine("Invalid login, try again.");
+                    Console.WriteLine("*************************");
                 }
             }
 
@@ -72,9 +76,9 @@ namespace SmartInventory
                                 Console.WriteLine("1) Electronics 2) Clothing 3) Food");
                                 string type = Console.ReadLine();
                                 Console.Write("Name: "); string name = Console.ReadLine();
-                                Console.Write("Price: "); decimal price = decimal.Parse(Console.ReadLine());
-                                Console.Write("Qty: "); int qty = int.Parse(Console.ReadLine());
-                                Console.Write("Min: "); int min = int.Parse(Console.ReadLine());
+                                Console.Write("Price: "); decimal price = decimal.TryParse(Console.ReadLine());
+                                Console.Write("Qty: "); int qty = int.TryParse(Console.ReadLine());
+                                Console.Write("Min: "); int min = int.TryParse(Console.ReadLine());
 
                                 Product p;
                                 if (type == "1")
