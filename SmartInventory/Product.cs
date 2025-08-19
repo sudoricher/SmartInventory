@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace SmartInventory
 {
-    public abstract class Product
+    // Inheritance and Interface Implementation
+    public interface IProductOperations
+    {
+        void UpdateStock(int change);
+        bool IsLowStock();
+        string GetDetails();
+    }
+
+    //Inheritance
+    public abstract class Product : IProductOperations
     {
         public int ProductID { get; set; }
         public string Name { get; set; }
