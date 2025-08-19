@@ -109,6 +109,7 @@ namespace SmartInventory
                         case "3":
                             if (security.HasPermission("Update"))
                             {
+                                Console.WriteLine("\n====================");
                                 Console.Write("Enter ID: ");
                                 int id = int.Parse(Console.ReadLine());
                                 Product p = inventory.FindById(id);
@@ -116,8 +117,12 @@ namespace SmartInventory
                                 Console.Write("Change (+/-): ");
                                 int change = int.Parse(Console.ReadLine());
                                 p.UpdateStock(change);
+                                Console.WriteLine("====================");
                             }
-                            else Console.WriteLine("Access denied.");
+                            else
+                                Console.WriteLine("********************");
+                                Console.WriteLine("Access denied.");
+                            Console.WriteLine("*********************");
                             break;
 
                         case "4":
@@ -130,13 +135,17 @@ namespace SmartInventory
                             break;
 
                         default:
+                            Console.WriteLine("********************");
                             Console.WriteLine("Invalid option.");
+                            Console.WriteLine("********************");
                             break;
                     }
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine("********************");
                     Console.WriteLine("[ERROR] " + ex.Message);
+                    Console.WriteLine("********************");
                 }
             }
         }
