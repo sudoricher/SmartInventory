@@ -16,7 +16,9 @@ namespace SmartInventory
             // Subscribe to low stock alerts
             inventory.LowStockAlert += (p) =>
             {
+                Console.WriteLine("**************************************************");
                 Console.WriteLine($"[ALERT] Low stock on {p.Name}! Current: {p.GetDetails()}");
+                Console.WriteLine("**************************************************");
             };
 
             // Authentication
@@ -30,12 +32,16 @@ namespace SmartInventory
 
                 if (security.Authenticate(user, pass))
                 {
+                    Console.WriteLine("=========================");
                     Console.WriteLine($"Welcome {user} ({security.CurrentUserRole})");
+                    Console.WriteLine("=========================");
                     loggedIn = true;
                 }
                 else
                 {
+                    Console.WriteLine("*************************");
                     Console.WriteLine("Invalid login, try again.");
+                    Console.WriteLine("*************************");
                 }
             }
 
@@ -69,12 +75,14 @@ namespace SmartInventory
                         case "2":
                             if (security.HasPermission("Add"))
                             {
-                                Console.WriteLine("1) Electronics 2) Clothing 3) Food");
+                                Console.WriteLine("\n1) Electronics 2) Clothing 3) Food");
                                 string type = Console.ReadLine();
+                                Console.WriteLine("\n=========================");
                                 Console.Write("Name: "); string name = Console.ReadLine();
                                 Console.Write("Price: "); decimal price = decimal.Parse(Console.ReadLine());
                                 Console.Write("Qty: "); int qty = int.Parse(Console.ReadLine());
                                 Console.Write("Min: "); int min = int.Parse(Console.ReadLine());
+                                Console.WriteLine("=========================\n");
 
                                 Product p;
                                 if (type == "1")
@@ -101,6 +109,7 @@ namespace SmartInventory
                         case "3":
                             if (security.HasPermission("Update"))
                             {
+                                Console.WriteLine("\n====================");
                                 Console.Write("Enter ID: ");
                                 int id = int.Parse(Console.ReadLine());
                                 Product p = inventory.FindById(id);
@@ -108,8 +117,12 @@ namespace SmartInventory
                                 Console.Write("Change (+/-): ");
                                 int change = int.Parse(Console.ReadLine());
                                 p.UpdateStock(change);
+                                Console.WriteLine("====================");
                             }
-                            else Console.WriteLine("Access denied.");
+                            else
+                                Console.WriteLine("********************");
+                                Console.WriteLine("Access denied.");
+                            Console.WriteLine("*********************");
                             break;
 
                         case "4":
@@ -122,13 +135,17 @@ namespace SmartInventory
                             break;
 
                         default:
+                            Console.WriteLine("********************");
                             Console.WriteLine("Invalid option.");
+                            Console.WriteLine("********************");
                             break;
                     }
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine("********************");
                     Console.WriteLine("[ERROR] " + ex.Message);
+                    Console.WriteLine("********************");
                 }
             }
         }

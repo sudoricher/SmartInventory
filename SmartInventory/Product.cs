@@ -53,12 +53,29 @@ namespace SmartInventory
             StockLevelChanged?.Invoke(this, $"Stock updated for {Name}. New Qty: {Quantity}");
         }
 
-        public bool IsLowStock() => Quantity < MinThreshold;
+        public void SetPrice(decimal newPrice)
+        {
+            if (newPrice <= 0)
+                throw new InvalidProductException("Invalid price.");
+            Price = newPrice;
+        }
+
+        public void Restock(int amount)
+        {
+            if (amount <= 0)
+                throw new InvalidProductException("Restock amount must be positive.");
+            Quantity += amount;
+            StockLevelChanged?.Invoke(this, $"Stock restocked for {Name}. New Qty: {Quantity}");
+        }
+
+        public bool IsLowStock()
+        {
+            return Quantity <= MinThreshold;
+        }
 
         public virtual string GetDetails()
         {
-            string status = IsLowStock() ? "LOW" : "OK";
-            return $"{ProductID} | {Name} | {Price:C} | Qty: {Quantity} | Min: {MinThreshold} | {status}";
+            return $"ID: {ProductID}, Name: {Name}, Price: {Price:C}, Qty: {Quantity}, Min: {MinThreshold}";
         }
     }
 
