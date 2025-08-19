@@ -16,7 +16,9 @@ namespace SmartInventory
             // Subscribe to low stock alerts
             inventory.LowStockAlert += (p) =>
             {
+                Console.WriteLine("**************************************************");
                 Console.WriteLine($"[ALERT] Low stock on {p.Name}! Current: {p.GetDetails()}");
+                Console.WriteLine("**************************************************");
             };
 
             // Authentication
@@ -73,12 +75,14 @@ namespace SmartInventory
                         case "2":
                             if (security.HasPermission("Add"))
                             {
-                                Console.WriteLine("1) Electronics 2) Clothing 3) Food");
+                                Console.WriteLine("\n1) Electronics 2) Clothing 3) Food");
                                 string type = Console.ReadLine();
+                                Console.WriteLine("\n=========================");
                                 Console.Write("Name: "); string name = Console.ReadLine();
-                                Console.Write("Price: "); decimal price = decimal.TryParse(Console.ReadLine());
-                                Console.Write("Qty: "); int qty = int.TryParse(Console.ReadLine());
-                                Console.Write("Min: "); int min = int.TryParse(Console.ReadLine());
+                                Console.Write("Price: "); decimal price = decimal.Parse(Console.ReadLine());
+                                Console.Write("Qty: "); int qty = int.Parse(Console.ReadLine());
+                                Console.Write("Min: "); int min = int.Parse(Console.ReadLine());
+                                Console.WriteLine("=========================\n");
 
                                 Product p;
                                 if (type == "1")
