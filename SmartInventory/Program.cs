@@ -16,6 +16,7 @@ namespace SmartInventory
             // Subscribe to low stock alerts
             inventory.LowStockAlert += (p) =>
             {
+                Console.WriteLine("***********");
                 Console.WriteLine("**************************************************");
                 Console.WriteLine($"[ALERT] Low stock on {p.Name}! Current: {p.GetDetails()}");
                 Console.WriteLine("**************************************************");
