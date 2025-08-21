@@ -16,11 +16,10 @@ namespace SmartInventory
             // Subscribe to low stock alerts
             inventory.LowStockAlert += (p) =>
             {
-                Console.WriteLine("*");
+                
                 Console.WriteLine("**************************************************");
                 Console.WriteLine($"[ALERT] Low stock on {p.Name}! Current: {p.GetDetails()}");
                 Console.WriteLine("**************************************************");
-                Console.WriteLine("************");
             };
 
             // Authentication
@@ -122,9 +121,9 @@ namespace SmartInventory
                                 Console.WriteLine("====================");
                             }
                             else
-                                Console.WriteLine("********************");
-                                Console.WriteLine("Access denied.");
-                            Console.WriteLine("*********************");
+                         
+                                Console.WriteLine("");
+                            
                             break;
 
                         case "4":
